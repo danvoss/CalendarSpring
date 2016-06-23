@@ -1,0 +1,29 @@
+<html>
+<body>
+{{^username}}
+<form action="/login" method="post">
+    <input type="text" name="username" placeholder="Username"/>
+    <input type="password" name="password" placeholder="Password"/>
+    <button type="submit">Login</button>
+</form>
+{{/username}}
+
+{{#username}}
+Hello, {{.}}!
+<br>
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+<form action="create-event" method="post">
+    <input type="text" name="description" placeholder="Description"/>
+    <input type="datetime-local" name="time" value="{{now}}"/>
+    <button type="submit">Create Event</button>
+</form>
+{{/username}}
+
+{{#events}}
+{{description}} {{time}}<br>
+{{/events}}
+</body>
+</html>
